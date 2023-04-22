@@ -1,0 +1,23 @@
+	<form>
+		<input type="text" placeholder="Write your task here" name="task" id="task">
+		<label for="error" id="error"></label>
+		<input type="button" value="Add" id="add">
+	</form>
+	<div class="tasks-section">
+		<div class="task">
+			{% if task is defined %}
+				{% for item in task %}
+					<div {% if item.getDone()=="yes" %} class="task done" {% else %} class="task" {% endif %}>
+						{{ item.getTaskContent() }}
+						<button class="mark" id="{{ item.getId() }}" value="">
+							MARK AS DONE
+						</button>
+						<button class="delete" id="{{ item.getId() }}">
+							DELETE
+						</button>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+<script src="{{ asset("js/index.js") }}"></script>
